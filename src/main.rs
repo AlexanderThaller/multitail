@@ -12,7 +12,7 @@ use std::time::Duration;
 async fn main() {
     let (sender, receiver) = async_std::channel::bounded(100);
 
-    { 0..10000 }
+    { 0..=10000 }
         .map(|i| format!("file_{}.log", i))
         .for_each(|path| {
             async_std::task::spawn(tail(path, sender.clone()));
